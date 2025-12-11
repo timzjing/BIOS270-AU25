@@ -6,6 +6,12 @@ from align import compute_alignment, alignment_stats
 
 # ---------------- Streamlit App ----------------
 st.set_page_config(page_title="Pairwise Sequence Aligner", layout="wide")
+
+st.image(
+    "https://media.licdn.com/dms/image/v2/D5603AQETnCdSkPgzOQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1711159276336?e=2147483647&v=beta&t=FMzdRf0KJLpsU-nAqWGwEOfU5vQdN2t0R_8kVMQ6_Lo",
+    width=150
+)
+
 st.title("Pairwise Sequence Aligner")
 
 st.markdown(
@@ -91,6 +97,9 @@ if align_clicked:
                 st.plotly_chart(fig, use_container_width=True)
             else:
                 st.info("No comparable (non-gap) positions to plot.")
+
+            fig = px.histogram(vals, nbins=10, title="Distribution of Match Values (Match=1, Mismatch=0)")
+            st.plotly_chart(fig, use_container_width=True)
 
             # Download
             out_text = (
